@@ -59,7 +59,7 @@ contract RewardPool {
             feePercentage = poolCreationFeePercentage;
         }
 
-        uint feeAmount = (msg.value * feePercentage) / 100;
+        uint feeAmount = (msg.value * feePercentage) / (100 + feePercentage);
         uint poolSize = msg.value - feeAmount;
 
         if (feeAmount > 0) {
@@ -91,7 +91,7 @@ contract RewardPool {
             feePercentage = poolCreationFeePercentage;
         }
 
-        uint feeAmount = (amount * feePercentage) / 100;
+        uint feeAmount = (amount * feePercentage) / (100 + feePercentage);
         uint poolSize = amount - feeAmount;
 
         token.safeTransferFrom(msg.sender, address(this), poolSize);
